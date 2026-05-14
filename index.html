@@ -9,7 +9,7 @@
             --bg-color: #0a0a0a;
             --accent-color: #ffffff;
             --text-secondary: #888;
-            --progress-color: #22c55e; /* Verde energia */
+            --progress-color: #22c55e;
         }
 
         body {
@@ -26,26 +26,35 @@
 
         #widget-container {
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
             text-align: center;
         }
 
         .step { display: none; }
         .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
 
-        h2 { font-weight: 300; letter-spacing: 1px; margin-bottom: 40px; }
+        .level-indicator {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h2 { font-weight: 300; letter-spacing: 1px; margin-bottom: 30px; font-size: 20px; line-height: 1.4; }
 
         .btn-option {
             background: transparent;
             border: 1px solid #333;
             color: white;
-            padding: 20px;
+            padding: 18px;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 16px;
+            font-size: 15px;
+            text-align: center;
         }
 
         .btn-option:hover {
@@ -68,7 +77,7 @@
         }
 
         .final-message {
-            font-size: 24px;
+            font-size: 22px;
             line-height: 1.4;
             font-weight: 300;
         }
@@ -84,37 +93,90 @@
 <div id="widget-container">
     <div class="progress-bar"><div id="progress-inner"></div></div>
 
-    <!-- Nível 1: Físico -->
+    <!-- NÍVEL 1: O FÍSICO -->
     <div class="step active" id="step1">
-        <h2>No asfalto, você prefere...</h2>
-        <button class="btn-option" onclick="nextStep(1, 'superação')">Vencer o relógio</button>
-        <button class="btn-option" onclick="nextStep(1, 'liberdade')">Vencer a distância</button>
+        <div class="level-indicator">Nível 1: O Físico</div>
+        <h2>Asfalto ou Trilha?</h2>
+        <button class="btn-option" onclick="nextStep(1, 'asfalto')">Asfalto</button>
+        <button class="btn-option" onclick="nextStep(1, 'trilha')">Trilha</button>
     </div>
 
-    <!-- Nível 2: Mental -->
     <div class="step" id="step2">
-        <h2>O que te move hoje?</h2>
-        <button class="btn-option" onclick="nextStep(2, 'propósito')">A dor da disciplina</button>
-        <button class="btn-option" onclick="nextStep(2, 'foco')">O prazer do resultado</button>
+        <div class="level-indicator">Nível 1: O Físico</div>
+        <h2>Fone de ouvido ou som do ambiente?</h2>
+        <button class="btn-option" onclick="nextStep(2, 'fone')">Fone de ouvido</button>
+        <button class="btn-option" onclick="nextStep(2, 'ambiente')">Som do ambiente</button>
     </div>
 
-    <!-- Nível 3: Emocional -->
     <div class="step" id="step3">
-        <h2>Sua corrida é sobre...</h2>
-        <button class="btn-option" onclick="nextStep(3, 'legado')">Quem eu quero me tornar</button>
-        <button class="btn-option" onclick="nextStep(3, 'essência')">Quem eu sou de verdade</button>
+        <div class="level-indicator">Nível 1: O Físico</div>
+        <h2>Correr no frio ou no calor?</h2>
+        <button class="btn-option" onclick="nextStep(3, 'frio')">Correr no frio</button>
+        <button class="btn-option" onclick="nextStep(3, 'calor')">Correr no calor</button>
+    </div>
+
+    <!-- NÍVEL 2: O MENTAL -->
+    <div class="step" id="step4">
+        <div class="level-indicator">Nível 2: O Mental</div>
+        <h2>Vencer o relógio ou a distância?</h2>
+        <button class="btn-option" onclick="nextStep(4, 'relogio')">Vencer o relógio</button>
+        <button class="btn-option" onclick="nextStep(4, 'distancia')">Vencer a distância</button>
+    </div>
+
+    <div class="step" id="step5">
+        <div class="level-indicator">Nível 2: O Mental</div>
+        <h2>O que te desafia mais?</h2>
+        <button class="btn-option" onclick="nextStep(5, 'disciplina')">A dor da disciplina</button>
+        <button class="btn-option" onclick="nextStep(5, 'arrependimento')">A dor do arrependimento</button>
+    </div>
+
+    <div class="step" id="step6">
+        <div class="level-indicator">Nível 2: O Mental</div>
+        <h2>Por que você corre?</h2>
+        <button class="btn-option" onclick="nextStep(6, 'esquecer')">Para esquecer os problemas</button>
+        <button class="btn-option" onclick="nextStep(6, 'solucoes')">Para encontrar soluções</button>
+    </div>
+
+    <div class="step" id="step7">
+        <div class="level-indicator">Nível 2: O Mental</div>
+        <h2>O que brilha mais em você agora?</h2>
+        <button class="btn-option" onclick="nextStep(7, 'chegar')">A vontade de chegar</button>
+        <button class="btn-option" onclick="nextStep(7, 'começar')">A satisfação de ter começado</button>
+    </div>
+
+    <!-- NÍVEL 3: O EMOCIONAL -->
+    <div class="step" id="step8">
+        <div class="level-indicator">Nível 3: O Emocional</div>
+        <h2>Sua corrida é por...</h2>
+        <button class="btn-option" onclick="nextStep(8, 'quem_sou')">Quem você é</button>
+        <button class="btn-option" onclick="nextStep(8, 'quem_quero_ser')">Quem você quer se tornar</button>
+    </div>
+
+    <div class="step" id="step9">
+        <div class="level-indicator">Nível 3: O Emocional</div>
+        <h2>Para quem você corre?</h2>
+        <button class="btn-option" onclick="nextStep(9, 'outros')">Provar algo para os outros</button>
+        <button class="btn-option" onclick="nextStep(9, 'si_mesmo')">Provar algo para si mesmo</button>
+    </div>
+
+    <div class="step" id="step10">
+        <div class="level-indicator">Nível 3: O Emocional</div>
+        <h2>Como você se sente após o treino?</h2>
+        <button class="btn-option" onclick="nextStep(10, 'esgotado')">Sinto-me esgotado</button>
+        <button class="btn-option" onclick="nextStep(10, 'recarregado')">Recarreguei as energias</button>
     </div>
 
     <!-- Resultado Final -->
     <div class="step" id="result">
         <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 10px;">SUA ENERGIA É:</p>
         <div class="final-message" id="final-text"></div>
-        <button class="btn-option" style="margin-top: 50px; border: none; text-decoration: underline;" onclick="reset()">Recomeçar</button>
+        <button class="btn-option" style="margin-top: 50px; border: none; text-decoration: underline;" onclick="reset()">Recomeçar jornada</button>
     </div>
 </div>
 
 <script>
     let choices = [];
+    const totalSteps = 10;
 
     function nextStep(current, choice) {
         choices.push(choice);
@@ -122,7 +184,9 @@
         
         const next = current + 1;
         const progressBar = document.getElementById('progress-inner');
-        progressBar.style.width = (current * 33.3) + '%';
+        
+        // Atualiza a barra proporcionalmente ao número de perguntas
+        progressBar.style.width = (current * (100 / totalSteps)) + '%';
 
         if (document.getElementById('step' + next)) {
             document.getElementById('step' + next).classList.add('active');
@@ -139,11 +203,13 @@
         progressBar.style.width = '100%';
         resultDiv.classList.add('active');
 
-        // Lógica simples de geração de frase baseada na última escolha e perfil
-        if (choices.includes('essência')) {
-            finalText.innerHTML = "Aquela que não se apaga quando o dia termina. Você recarrega o que realmente importa.";
+        // Lógica de encerramento baseada na última resposta (Recarregar/Esgotado)
+        if (choices.includes('recarregado')) {
+            finalText.innerHTML = "Inesgotável. Você transformou o esforço em fonte de vitalidade para o que realmente importa.";
+        } else if (choices.includes('quem_quero_ser')) {
+            finalText.innerHTML = "Evolutiva. Cada quilômetro é o investimento necessário para construir sua melhor versão.";
         } else {
-            finalText.innerHTML = "O combustível para a sua evolução constante. Sua luz guia quem vem atrás.";
+            finalText.innerHTML = "Autêntica. Sua luz brilha mais forte quando você corre fiel à sua própria essência.";
         }
     }
 
