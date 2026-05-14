@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elety + Wolf Running | Mentalidade</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
+   <style>
     :root {
         --bg-color: #000000;
         --accent-yellow: #Ebc007; 
@@ -15,6 +15,7 @@
         --text-dim: #a0a0a0;
     }
 
+    /* Layout Base (Desktop) */
     body {
         background-color: var(--bg-color);
         color: var(--text-main);
@@ -24,32 +25,27 @@
         align-items: center;
         min-height: 100vh;
         margin: 0;
-        padding: 20px; /* Garante que não cole nas bordas no mobile */
-        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     #widget-container {
-        width: 100%;
-        max-width: 420px;
+        width: 420px; /* Tamanho fixo no Desktop para manter a diagramação */
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        padding: 40px;
+        box-sizing: border-box;
     }
 
     .brand-header {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 15px;
-        margin-bottom: 30px;
+        gap: 20px;
+        margin-bottom: 40px;
     }
 
     .brand-header img {
-        height: 25px; /* Reduzido levemente para melhor encaixe */
-        width: auto;
+        height: 30px;
         opacity: 0.9;
-        object-fit: contain;
     }
 
     .divider {
@@ -58,77 +54,67 @@
         background: var(--glass-border);
     }
 
-    .progress-bar {
-        height: 2px;
-        width: 100%;
-        background: #1a1a1a;
-        margin-bottom: 40px;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    #progress-inner {
-        height: 100%;
-        background: linear-gradient(90deg, #b08d05, var(--accent-yellow));
-        width: 0%;
-        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 0 15px rgba(235, 192, 7, 0.3);
-    }
-
-    .step { display: none; width: 100%; }
-    .step.active { display: block; animation: slideUp 0.6s ease-out; }
-
-    .level-indicator {
-        color: var(--accent-yellow);
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
-
-    h2 { 
-        font-weight: 300; 
-        font-size: 20px; 
-        line-height: 1.4; 
-        margin-bottom: 30px;
-        letter-spacing: -0.5px;
-    }
-
+    /* Elementos de Interação */
     .btn-option {
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         color: var(--text-main);
-        padding: 18px 15px;
+        padding: 22px 20px;
         width: 100%;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         border-radius: 12px;
         cursor: pointer;
         transition: all 0.4s ease;
-        font-size: 13px;
+        font-size: 14px;
         font-family: 'Montserrat', sans-serif;
-        backdrop-filter: blur(5px);
         text-transform: uppercase;
         letter-spacing: 1px;
-        box-sizing: border-box;
     }
 
     .btn-option:hover {
         border-color: var(--accent-yellow);
         background: rgba(235, 192, 7, 0.05);
+        transform: translateY(-2px);
     }
 
-    /* Ajustes específicos para telas muito pequenas (Mobile) */
-    @media (max-width: 380px) {
-        h2 { font-size: 18px; }
-        .brand-header img { height: 20px; }
-        .btn-option { padding: 15px; font-size: 12px; }
+    /* Ajuste Exclusivo para Mobile (Abaixo de 480px) */
+    @media (max-width: 480px) {
+        body {
+            align-items: flex-start; /* Evita que o conteúdo suma no topo em telas pequenas */
+            padding-top: 50px;
+        }
+        
+        #widget-container {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .brand-header {
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .brand-header img {
+            height: 22px; /* Redução para não quebrar linha no celular */
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn-option {
+            padding: 18px 15px;
+            font-size: 13px;
+        }
     }
 
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+    /* Estilos de Progresso e Animação */
+    .progress-bar { height: 2px; width: 100%; background: #1a1a1a; margin-bottom: 50px; border-radius: 10px; overflow: hidden; }
+    #progress-inner { height: 100%; background: linear-gradient(90deg, #b08d05, var(--accent-yellow)); width: 0%; transition: width 0.6s ease; }
+    .step { display: none; }
+    .step.active { display: block; animation: slideUp 0.6s ease-out; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
