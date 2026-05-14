@@ -4,86 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elety + Wolf Running | Mentalidade</title>
+    <!-- Importando Montserrat para o padrão Elety -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --accent-color: #ffffff;
-            --text-secondary: #888;
-            --progress-color: #22c55e;
+            --bg-color: #000000;
+            --accent-green: #22c55e; /* Verde Elety */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--accent-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         #widget-container {
             width: 90%;
-            max-width: 450px;
+            max-width: 420px;
             text-align: center;
+            padding: 20px;
         }
 
-        .step { display: none; }
-        .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
-
-        .level-indicator {
-            color: var(--text-secondary);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        h2 { font-weight: 300; letter-spacing: 1px; margin-bottom: 30px; font-size: 20px; line-height: 1.4; }
-
-        .btn-option {
-            background: transparent;
-            border: 1px solid #333;
-            color: white;
-            padding: 18px;
-            width: 100%;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 15px;
-            text-align: center;
-        }
-
-        .btn-option:hover {
-            border-color: var(--accent-color);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .progress-bar {
-            height: 2px;
-            width: 100%;
-            background: #222;
+        /* Logos no Topo */
+        .brand-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
             margin-bottom: 40px;
+        }
+
+        .brand-header img {
+            height: 30px; /* Ajuste conforme necessário */
+            opacity: 0.9;
+            filter: brightness(1.2);
+        }
+
+        .divider {
+            width: 1px;
+            height: 20px;
+            background: var(--glass-border);
+        }
+
+        /* Barra de Progresso Minimalista */
+        .progress-bar {
+            height: 3px;
+            width: 100%;
+            background: #1a1a1a;
+            margin-bottom: 50px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         #progress-inner {
             height: 100%;
-            background: var(--progress-color);
+            background: linear-gradient(90deg, #16a34a, var(--accent-green));
             width: 0%;
-            transition: width 0.4s;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+        }
+
+        .step { display: none; }
+        .step.active { display: block; animation: slideUp 0.6s ease-out; }
+
+        .level-indicator {
+            color: var(--accent-green);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        h2 { 
+            font-weight: 300; 
+            font-size: 22px; 
+            line-height: 1.5; 
+            margin-bottom: 35px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Botões Estilo Elety (Premium/Glass) */
+        .btn-option {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 22px 20px;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            backdrop-filter: blur(5px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-option:hover {
+            border-color: var(--accent-green);
+            background: rgba(34, 197, 94, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .final-message {
-            font-size: 22px;
-            line-height: 1.4;
+            font-size: 24px;
+            line-height: 1.6;
             font-weight: 300;
+            color: #efefef;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        .btn-reset {
+            margin-top: 40px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -91,6 +146,13 @@
 <body>
 
 <div id="widget-container">
+    <div class="brand-header">
+        <!-- Substitua os URLs abaixo pelos links das logos -->
+        <img src="URL_DA_LOGO_ELETY" alt="Elety Logo">
+        <div class="divider"></div>
+        <img src="URL_DA_LOGO_WOLF" alt="Wolf Running Logo">
+    </div>
+
     <div class="progress-bar"><div id="progress-inner"></div></div>
 
     <!-- NÍVEL 1: O FÍSICO -->
@@ -111,16 +173,16 @@
     <div class="step" id="step3">
         <div class="level-indicator">Nível 1: O Físico</div>
         <h2>Correr no frio ou no calor?</h2>
-        <button class="btn-option" onclick="nextStep(3, 'frio')">Correr no frio</button>
-        <button class="btn-option" onclick="nextStep(3, 'calor')">Correr no calor</button>
+        <button class="btn-option" onclick="nextStep(3, 'frio')">Frio</button>
+        <button class="btn-option" onclick="nextStep(3, 'calor')">Calor</button>
     </div>
 
     <!-- NÍVEL 2: O MENTAL -->
     <div class="step" id="step4">
         <div class="level-indicator">Nível 2: O Mental</div>
         <h2>Vencer o relógio ou a distância?</h2>
-        <button class="btn-option" onclick="nextStep(4, 'relogio')">Vencer o relógio</button>
-        <button class="btn-option" onclick="nextStep(4, 'distancia')">Vencer a distância</button>
+        <button class="btn-option" onclick="nextStep(4, 'relogio')">Relógio</button>
+        <button class="btn-option" onclick="nextStep(4, 'distancia')">Distância</button>
     </div>
 
     <div class="step" id="step5">
@@ -149,28 +211,29 @@
         <div class="level-indicator">Nível 3: O Emocional</div>
         <h2>Sua corrida é por...</h2>
         <button class="btn-option" onclick="nextStep(8, 'quem_sou')">Quem você é</button>
-        <button class="btn-option" onclick="nextStep(8, 'quem_quero_ser')">Quem você quer se tornar</button>
+        <button class="btn-option" onclick="nextStep(8, 'quem_quero_ser')">Quem você quer ser</button>
     </div>
 
     <div class="step" id="step9">
         <div class="level-indicator">Nível 3: O Emocional</div>
         <h2>Para quem você corre?</h2>
-        <button class="btn-option" onclick="nextStep(9, 'outros')">Provar algo para os outros</button>
-        <button class="btn-option" onclick="nextStep(9, 'si_mesmo')">Provar algo para si mesmo</button>
+        <button class="btn-option" onclick="nextStep(9, 'outros')">Provar para os outros</button>
+        <button class="btn-option" onclick="nextStep(9, 'si_mesmo')">Provar para si mesmo</button>
     </div>
 
     <div class="step" id="step10">
         <div class="level-indicator">Nível 3: O Emocional</div>
-        <h2>Como você se sente após o treino?</h2>
-        <button class="btn-option" onclick="nextStep(10, 'esgotado')">Sinto-me esgotado</button>
-        <button class="btn-option" onclick="nextStep(10, 'recarregado')">Recarreguei as energias</button>
+        <h2>Após o treino, você sente que...</h2>
+        <button class="btn-option" onclick="nextStep(10, 'esgotado')">Esgotou as energias</button>
+        <button class="btn-option" onclick="nextStep(10, 'recarregado')">Recarregou as energias</button>
     </div>
 
     <!-- Resultado Final -->
     <div class="step" id="result">
-        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 10px;">SUA ENERGIA É:</p>
+        <div class="level-indicator" style="color: var(--text-dim)">Diagnóstico Final</div>
+        <p style="color: var(--accent-green); font-size: 12px; margin-bottom: 20px; font-weight: 600; letter-spacing: 2px;">SUA ENERGIA É:</p>
         <div class="final-message" id="final-text"></div>
-        <button class="btn-option" style="margin-top: 50px; border: none; text-decoration: underline;" onclick="reset()">Recomeçar jornada</button>
+        <button class="btn-reset" onclick="reset()">Recomeçar jornada</button>
     </div>
 </div>
 
@@ -184,8 +247,6 @@
         
         const next = current + 1;
         const progressBar = document.getElementById('progress-inner');
-        
-        // Atualiza a barra proporcionalmente ao número de perguntas
         progressBar.style.width = (current * (100 / totalSteps)) + '%';
 
         if (document.getElementById('step' + next)) {
@@ -203,13 +264,12 @@
         progressBar.style.width = '100%';
         resultDiv.classList.add('active');
 
-        // Lógica de encerramento baseada na última resposta (Recarregar/Esgotado)
         if (choices.includes('recarregado')) {
-            finalText.innerHTML = "Inesgotável. Você transformou o esforço em fonte de vitalidade para o que realmente importa.";
+            finalText.innerHTML = "INESGOTÁVEL. <br><span style='font-size: 16px; color: #888;'>Você transformou o movimento em combustível. Sua luz brilha mais forte a cada quilômetro.</span>";
         } else if (choices.includes('quem_quero_ser')) {
-            finalText.innerHTML = "Evolutiva. Cada quilômetro é o investimento necessário para construir sua melhor versão.";
+            finalText.innerHTML = "EVOLUTIVA. <br><span style='font-size: 16px; color: #888;'>Sua energia é o investimento para sua melhor versão. Você corre para construir o futuro.</span>";
         } else {
-            finalText.innerHTML = "Autêntica. Sua luz brilha mais forte quando você corre fiel à sua própria essência.";
+            finalText.innerHTML = "AUTÊNTICA. <br><span style='font-size: 16px; color: #888;'>Sua força vem de dentro. Você corre para honrar quem você já é.</span>";
         }
     }
 
