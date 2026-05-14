@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elety + Wolf Running | Mentalidade</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --accent-color: #ffffff;
+            --text-secondary: #888;
+            --progress-color: #22c55e; /* Verde energia */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--accent-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #widget-container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+
+        h2 { font-weight: 300; letter-spacing: 1px; margin-bottom: 40px; }
+
+        .btn-option {
+            background: transparent;
+            border: 1px solid #333;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .btn-option:hover {
+            border-color: var(--accent-color);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .progress-bar {
+            height: 2px;
+            width: 100%;
+            background: #222;
+            margin-bottom: 40px;
+        }
+
+        #progress-inner {
+            height: 100%;
+            background: var(--progress-color);
+            width: 0%;
+            transition: width 0.4s;
+        }
+
+        .final-message {
+            font-size: 24px;
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div id="widget-container">
+    <div class="progress-bar"><div id="progress-inner"></div></div>
+
+    <!-- Nível 1: Físico -->
+    <div class="step active" id="step1">
+        <h2>No asfalto, você prefere...</h2>
+        <button class="btn-option" onclick="nextStep(1, 'superação')">Vencer o relógio</button>
+        <button class="btn-option" onclick="nextStep(1, 'liberdade')">Vencer a distância</button>
+    </div>
+
+    <!-- Nível 2: Mental -->
+    <div class="step" id="step2">
+        <h2>O que te move hoje?</h2>
+        <button class="btn-option" onclick="nextStep(2, 'propósito')">A dor da disciplina</button>
+        <button class="btn-option" onclick="nextStep(2, 'foco')">O prazer do resultado</button>
+    </div>
+
+    <!-- Nível 3: Emocional -->
+    <div class="step" id="step3">
+        <h2>Sua corrida é sobre...</h2>
+        <button class="btn-option" onclick="nextStep(3, 'legado')">Quem eu quero me tornar</button>
+        <button class="btn-option" onclick="nextStep(3, 'essência')">Quem eu sou de verdade</button>
+    </div>
+
+    <!-- Resultado Final -->
+    <div class="step" id="result">
+        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 10px;">SUA ENERGIA É:</p>
+        <div class="final-message" id="final-text"></div>
+        <button class="btn-option" style="margin-top: 50px; border: none; text-decoration: underline;" onclick="reset()">Recomeçar</button>
+    </div>
+</div>
+
+<script>
+    let choices = [];
+
+    function nextStep(current, choice) {
+        choices.push(choice);
+        document.getElementById('step' + current).classList.remove('active');
+        
+        const next = current + 1;
+        const progressBar = document.getElementById('progress-inner');
+        progressBar.style.width = (current * 33.3) + '%';
+
+        if (document.getElementById('step' + next)) {
+            document.getElementById('step' + next).classList.add('active');
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        const resultDiv = document.getElementById('result');
+        const finalText = document.getElementById('final-text');
+        const progressBar = document.getElementById('progress-inner');
+        
+        progressBar.style.width = '100%';
+        resultDiv.classList.add('active');
+
+        // Lógica simples de geração de frase baseada na última escolha e perfil
+        if (choices.includes('essência')) {
+            finalText.innerHTML = "Aquela que não se apaga quando o dia termina. Você recarrega o que realmente importa.";
+        } else {
+            finalText.innerHTML = "O combustível para a sua evolução constante. Sua luz guia quem vem atrás.";
+        }
+    }
+
+    function reset() {
+        choices = [];
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step1').classList.add('active');
+        document.getElementById('progress-inner').style.width = '0%';
+    }
+</script>
+
+</body>
+</html>
