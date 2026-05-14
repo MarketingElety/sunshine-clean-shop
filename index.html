@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elety + Wolf Running | Mentalidade</title>
-    <!-- Importando Montserrat para o padrão Elety -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #000000;
-            --accent-green: #22c55e; /* Verde Elety */
+            --accent-yellow: #Ebc007; /* Amarelo Identidade Elety */
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-main: #ffffff;
@@ -35,7 +34,6 @@
             padding: 20px;
         }
 
-        /* Logos no Topo */
         .brand-header {
             display: flex;
             justify-content: center;
@@ -45,9 +43,8 @@
         }
 
         .brand-header img {
-            height: 30px; /* Ajuste conforme necessário */
+            height: 30px;
             opacity: 0.9;
-            filter: brightness(1.2);
         }
 
         .divider {
@@ -56,9 +53,8 @@
             background: var(--glass-border);
         }
 
-        /* Barra de Progresso Minimalista */
         .progress-bar {
-            height: 3px;
+            height: 2px;
             width: 100%;
             background: #1a1a1a;
             margin-bottom: 50px;
@@ -68,17 +64,17 @@
 
         #progress-inner {
             height: 100%;
-            background: linear-gradient(90deg, #16a34a, var(--accent-green));
+            background: linear-gradient(90deg, #b08d05, var(--accent-yellow));
             width: 0%;
             transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 15px rgba(235, 192, 7, 0.3);
         }
 
         .step { display: none; }
         .step.active { display: block; animation: slideUp 0.6s ease-out; }
 
         .level-indicator {
-            color: var(--accent-green);
+            color: var(--accent-yellow);
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -94,7 +90,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Botões Estilo Elety (Premium/Glass) */
         .btn-option {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -113,10 +108,9 @@
         }
 
         .btn-option:hover {
-            border-color: var(--accent-green);
-            background: rgba(34, 197, 94, 0.05);
+            border-color: var(--accent-yellow);
+            background: rgba(235, 192, 7, 0.05);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .final-message {
@@ -147,15 +141,14 @@
 
 <div id="widget-container">
     <div class="brand-header">
-        <!-- Substitua os URLs abaixo pelos links das logos -->
-        <img src="URL_DA_LOGO_ELETY" alt="Elety Logo">
+        <img src="URL_DA_LOGO_ELETY" alt="Elety">
         <div class="divider"></div>
-        <img src="URL_DA_LOGO_WOLF" alt="Wolf Running Logo">
+        <img src="URL_DA_LOGO_WOLF" alt="Wolf Running">
     </div>
 
     <div class="progress-bar"><div id="progress-inner"></div></div>
 
-    <!-- NÍVEL 1: O FÍSICO -->
+    <!-- NÍVEL 1 -->
     <div class="step active" id="step1">
         <div class="level-indicator">Nível 1: O Físico</div>
         <h2>Asfalto ou Trilha?</h2>
@@ -177,7 +170,7 @@
         <button class="btn-option" onclick="nextStep(3, 'calor')">Calor</button>
     </div>
 
-    <!-- NÍVEL 2: O MENTAL -->
+    <!-- NÍVEL 2 -->
     <div class="step" id="step4">
         <div class="level-indicator">Nível 2: O Mental</div>
         <h2>Vencer o relógio ou a distância?</h2>
@@ -206,7 +199,7 @@
         <button class="btn-option" onclick="nextStep(7, 'começar')">A satisfação de ter começado</button>
     </div>
 
-    <!-- NÍVEL 3: O EMOCIONAL -->
+    <!-- NÍVEL 3 -->
     <div class="step" id="step8">
         <div class="level-indicator">Nível 3: O Emocional</div>
         <h2>Sua corrida é por...</h2>
@@ -231,7 +224,7 @@
     <!-- Resultado Final -->
     <div class="step" id="result">
         <div class="level-indicator" style="color: var(--text-dim)">Diagnóstico Final</div>
-        <p style="color: var(--accent-green); font-size: 12px; margin-bottom: 20px; font-weight: 600; letter-spacing: 2px;">SUA ENERGIA É:</p>
+        <p style="color: var(--accent-yellow); font-size: 12px; margin-bottom: 20px; font-weight: 600; letter-spacing: 2px;">SUA ENERGIA É:</p>
         <div class="final-message" id="final-text"></div>
         <button class="btn-reset" onclick="reset()">Recomeçar jornada</button>
     </div>
